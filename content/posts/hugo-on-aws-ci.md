@@ -6,6 +6,10 @@ summary: "How I built a secure, low-cost, zero-servers pipeline: Hugo → GitHub
 tags: ["hugo","aws","cloudfront","s3","github-actions","dns","devops","portfolio"]
 ---
 
+**Source code for this project:**  
+[github.com/mgelsinger/hugo-aws-gh](https://github.com/mgelsinger/hugo-aws-gh)  
+Clone: `git clone https://github.com/mgelsinger/hugo-aws-gh.git`
+
 ## Overview & Rationale
 I built this portfolio/blog as a **production-ready static platform from day one—** Hugo for content, **GitHub Actions for CI/CD**, a **private S3 origin**, and **CloudFront** for global delivery and TLS via **ACM**. The pipeline emphasizes low operational overhead, OIDC-based deploys (no long-lived keys), and a **locked-down origin via OAC**, so it’s suitable for real work, not just demos.
 
