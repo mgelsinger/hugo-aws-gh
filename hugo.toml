@@ -1,0 +1,20 @@
+baseURL = "https://glsngr.xyz/"
+title = "glsngr"
+theme = "ananke"          # or another theme; remove if you go themeless
+paginate = 10
+languageCode = "en-us"
+
+[params]
+  description = "My portfolio + dev blog"
+  github = "https://github.com/mgelsinger"
+  youtube = "https://github.com/mgelsinger"
+
+[menu]
+  [[menu.main]]
+    name = "Blog"
+    url = "/posts/"
+    weight = 10
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 20
