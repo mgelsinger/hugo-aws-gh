@@ -11,7 +11,6 @@ I built this portfolio/blog as a **production-ready static platform from day one
 
 **Source code for this project:**  
 [github.com/mgelsinger/hugo-aws-gh](https://github.com/mgelsinger/hugo-aws-gh)  
-Clone: `git clone https://github.com/mgelsinger/hugo-aws-gh.git`
 
 **Highlights**
 - Zero servers to patch; everything is static and cached at the edge
