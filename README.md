@@ -1,4 +1,4 @@
-# glsngr — Hugo + AWS + GitHub Actions
+# Hugo + AWS + GitHub Actions
 
 Personal site built with Hugo (Stack theme), deployed to AWS S3 + CloudFront via GitHub Actions (OIDC, no long‑lived keys).
 
