@@ -4,6 +4,7 @@ date: 2025-09-12
 draft: false
 summary: "How I built a secure, low-cost, zero-servers pipeline: Hugo → GitHub Actions → S3 → CloudFront with Porkbun DNS, ACM TLS, least-privilege IAM, and edge functions."
 tags: ["hugo","aws","cloudfront","s3","github-actions","dns","devops","portfolio"]
+image: "gh-actions.png"
 ---
 
 ## Overview & Rationale

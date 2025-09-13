@@ -1,6 +1,6 @@
 baseURL = "https://glsngr.xyz/"
-title = "glsngr"
-theme = "ananke"          # or another theme; remove if you go themeless
+title = "Home"
+theme = "hugo-theme-stack"
 languageCode = "en-us"
 
 [pagination]
@@ -10,12 +10,21 @@ languageCode = "en-us"
   description = "My portfolio + dev blog"
   github = "https://github.com/mgelsinger"
   youtube = "https://github.com/mgelsinger"
+  mainSections = ["posts"]
+  featuredImageField = "image"
+
+  [params.colorScheme]
+    toggle = true
+    default = "dark"
+
+  [params.sidebar]
+    
+    [params.sidebar.avatar]
+      enabled = true
+      local = true
+      src = "img/avatar.jpg"
 
 [menu]
-  [[menu.main]]
-    name = "Blog"
-    url = "/posts/"
-    weight = 10
   [[menu.main]]
     name = "About"
     url = "/about/"

@@ -1,0 +1,13 @@
+/* Enlarged thumbnails for compact list layout */
+.article-list--compact {
+  --image-size: 120px;
+}
+
+@media (min-width: 768px) {
+  .article-list--compact { --image-size: 140px; }
+}
+
+@media (min-width: 1024px) {
+  .article-list--compact { --image-size: 160px; }
+}
+
