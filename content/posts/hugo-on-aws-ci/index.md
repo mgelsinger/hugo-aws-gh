@@ -22,6 +22,14 @@ I built this portfolio/blog as a **production-ready static platform from day one
 
 ---
 
+## Goals and constraints
+- **Simplicity:** one repo, one workflow, one clickless deploy path
+- **Security:** no public S3, no access keys in repo, least-privilege IAM
+- **Performance:** global CDN, Brotli/Gzip compression, HTTP/2+HTTP/3
+- **Cost awareness:** static hosting with CDN; DNS kept at Porkbun
+
+---
+
 ## Architecture at a glance
 
 ```
@@ -41,14 +49,6 @@ Amazon CloudFront (CDN + TLS via ACM)
    │
 Porkbun DNS (ALIAS apex → CloudFront, CNAME www → apex)
 ```
-
----
-
-## Goals and constraints
-- **Simplicity:** one repo, one workflow, one clickless deploy path
-- **Security:** no public S3, no access keys in repo, least-privilege IAM
-- **Performance:** global CDN, Brotli/Gzip compression, HTTP/2+HTTP/3
-- **Cost awareness:** static hosting with CDN; DNS kept at Porkbun
 
 ---
 
