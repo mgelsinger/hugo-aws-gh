@@ -5,11 +5,7 @@ draft: false
 slug: "podinpeace"
 description: "A lightweight Python tool for downloading, normalizing, and transcribing podcasts — with GPU-accelerated Whisper support and a clean Tkinter interface."
 tags: ["python", "audio", "ffmpeg", "whisper", "tkinter", "cli","archive"]
-image: "/images/podinpeace-banner.png"
----
-
-![Pod in Peace Screenshot](/images/podinpeace-ui.png)
-
+image: "podinpeace-banner.png"
 ---
 
 **Pod in Peace** is a small, self-contained Python app for discovering, downloading, normalizing, and transcribing podcasts.  
