@@ -1,5 +1,5 @@
 ---
-title: "Rivet: A Windows-Native Text Editor That Prioritizes Recovery and Focus"
+title: "Rivet: A Light Text Editor That Prioritizes Speed and Focus"
 date: 2026-03-03
 draft: false
 slug: "rivet"
@@ -39,7 +39,7 @@ Rivet supports multi-document selection tabs with three placements:
 - `Left` (vertical list)
 - `Right` (vertical list)
 
-The vertical tab panel is resizable and persists its width, and dirty indicators show up in both views.
+The vertical tab panel is resizable and persists its width in both views.
 
 ### 2) Session recovery and backups built-in
 Rivet’s file/session safety includes:
@@ -52,7 +52,7 @@ Rivet’s file/session safety includes:
 This is the “open your editor and keep going” promise—without crossing your fingers.
 
 ### 3) “Complete” daily-driver navigation
-Search and navigation are implemented as real workflows:
+Search and navigation are implemented as standard workflows would expect:
 
 - Find/Replace (`Ctrl+F`, `Ctrl+H`) with match case, whole word, regex, wrap
 - Replace All grouped into a single undo step
