@@ -62,8 +62,5 @@ Almost certainly. There's no site-specific code — the scanner runs on everythi
 **What if it breaks something?**
 Open DevTools and run `__heDebug.kill()` — disables the scanner on the current page immediately, no reload needed.
 
-**Does it sync between my machines?**
-Yes, through Chrome's built-in account sync. You can also export your rules to JSON and import them anywhere.
-
 **Is it really free?**
 Yes. MIT-licensed, no paid tier, no business model. If that changes I'll say so.
