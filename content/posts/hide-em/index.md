@@ -7,8 +7,8 @@ tags: ["projects", "chrome-extension", "side-project", "productivity"]
 links:
   - title: "Add to Chrome - Free"
     description: "Install from the Chrome Web Store"
-    website: "https://chromewebstore.google.com/detail/hide-em/nfdkjpjmbahmkehjaadehlncjcfidaaj?utm_source=item-share-cb"
-    image: "https://github.com/mgelsinger/hide-em/raw/main/icons/icon-128.png"
+    website: "https://chromewebstore.google.com/detail/hide-em/nfdkjpjmbahmkehjaadehlncjcfidaaj"
+    image: "icon-128.png"
   - title: "View Source"
     description: "MIT-licensed on GitHub"
     website: "https://github.com/mgelsinger/hide-em"
