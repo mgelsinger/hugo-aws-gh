@@ -8,7 +8,6 @@ links:
   - title: "Add to Chrome - Free"
     description: "Install from the Chrome Web Store"
     website: "https://chromewebstore.google.com/detail/hide-em/nfdkjpjmbahmkehjaadehlncjcfidaaj"
-    image: "icon-128.png"
   - title: "View Source"
     description: "MIT-licensed on GitHub"
     website: "https://github.com/mgelsinger/hide-em"
