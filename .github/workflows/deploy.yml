@@ -24,21 +24,21 @@ jobs:
 
     steps:
       - name: Checkout (with submodules)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
-          submodules: recursive   # <-- pulls your Hugo theme if it's a Git submodule
+          submodules: recursive
 
       - name: Setup Hugo (extended)
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.150.0'
+          hugo-version: '0.164.0'
           extended: true
 
       - name: Build site
         run: hugo --minify
 
       - name: Configure AWS credentials (OIDC)
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: ${{ env.ROLE_ARN }}

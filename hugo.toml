@@ -1,7 +1,7 @@
 baseURL = "https://glsngr.xyz/"
 title = "Home"
 theme = "hugo-theme-stack"
-languageCode = "en-us"
+locale = "en-US"
 
 [pagination]
   pagerSize = 10

@@ -1,14 +1,15 @@
 ---
 title: "Building a Production-Ready Hugo Pipeline on AWS with GitHub Actions"
 date: 2025-09-12
+lastmod: 2026-07-24
 draft: false
-summary: "How I built a secure, low-cost, zero-servers pipeline: Hugo → GitHub Actions → S3 → CloudFront with Porkbun DNS, ACM TLS, least-privilege IAM, and edge functions."
+summary: "How I built a secure, low-cost, zero-servers pipeline: Hugo to GitHub Actions to S3 and CloudFront, with Porkbun DNS, ACM TLS, least-privilege IAM, and edge functions."
 tags: ["hugo","aws","cloudfront","s3","github-actions","dns","devops","portfolio"]
 image: "gh-actions.png"
 ---
 
 ## Overview & Rationale
-I built this portfolio/blog as a **production-ready static platform from day one—** Hugo for content, **GitHub Actions for CI/CD**, a **private S3 origin**, and **CloudFront** for global delivery and TLS via **ACM**. The pipeline emphasizes low operational overhead, OIDC-based deploys (no long-lived keys), and a **locked-down origin via OAC**, so it’s suitable for real work, not just demos.
+I built this portfolio/blog as a **production-ready static platform from day one**: Hugo for content, **GitHub Actions for CI/CD**, a **private S3 origin**, and **CloudFront** for global delivery and TLS via **ACM**. The pipeline emphasizes low operational overhead, OIDC-based deploys with no long-lived keys, and a **locked-down origin via OAC**, so it is suitable for real work, not just demos.
 
 **Source code for this project:**  
 [github.com/mgelsinger/hugo-aws-gh](https://github.com/mgelsinger/hugo-aws-gh)  
@@ -54,14 +55,14 @@ Porkbun DNS (ALIAS apex → CloudFront, CNAME www → apex)
 
 ## The final stack
 - **Hugo** (extended) for content and theming
-- **GitHub Actions** for CI/CD (OIDC to assume AWS role—no stored secrets)
+- **GitHub Actions** for CI/CD (OIDC to assume an AWS role, with no stored secrets)
 - **S3** as a **private** origin (no website endpoint)
-- **CloudFront** in front of S3 (TLS, caching, compression, HTTP→HTTPS)
+- **CloudFront** in front of S3 (TLS, caching, compression, HTTP to HTTPS)
 - **ACM** certificate in `us-east-1` for `glsngr.xyz` and `*.glsngr.xyz`
 - **Porkbun DNS**: ALIAS (apex) → CloudFront, CNAME `www` → apex
 - **CloudFront Function** (viewer request) for:
-  - `www` → apex canonical 301
-  - pretty URLs (`/path` → `/path/index.html`)
+  - `www` to apex canonical 301
+  - pretty URLs (`/path` to `/path/index.html`)
 
 ---
 
@@ -72,8 +73,8 @@ Porkbun DNS (ALIAS apex → CloudFront, CNAME www → apex)
 - Attach the cert to the CloudFront distribution and list both hostnames under **Alternate domain names**.
 
 ### 2) DNS (Porkbun)
-- **ALIAS** (blank host) → `dxxxxx.cloudfront.net`
-- **CNAME** `www` → `glsngr.xyz`
+- **ALIAS** (blank host) to `dxxxxx.cloudfront.net`
+- **CNAME** `www` to `glsngr.xyz`
 - Keep ACM validation **CNAME(s)** for auto-renewal.
 
 ### 3) CloudFront behavior (key toggles)
@@ -94,6 +95,8 @@ Porkbun DNS (ALIAS apex → CloudFront, CNAME www → apex)
 
 ## CI/CD workflow (GitHub Actions)
 I deploy on every push to `main`. The runner installs Hugo (extended), builds the site, mirrors `public/` to S3, then invalidates CloudFront.
+
+This July 2026 refresh uses `actions/checkout` v7, `peaceiris/actions-hugo` v3, `aws-actions/configure-aws-credentials` v6, and Hugo 0.164.0. Keeping the article and the real workflow on the same versions prevents the example from drifting away from the deployed system.
 
 ```yaml
 name: Deploy Hugo to S3 + CloudFront
@@ -122,21 +125,21 @@ jobs:
 
     steps:
       - name: Checkout (with submodules)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: recursive
 
       - name: Setup Hugo (extended)
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.150.0'
+          hugo-version: '0.164.0'
           extended: true
 
       - name: Build site
         run: hugo --minify
 
       - name: Configure AWS credentials (OIDC)
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: ${{ env.ROLE_ARN }}
@@ -160,7 +163,7 @@ function handler(event) {
   var req = event.request;
   var host = req.headers.host ? req.headers.host.value : '';
 
-  // 1) Canonical: www → apex
+  // 1) Canonical: www to apex
   if (host === 'www.glsngr.xyz') {
     return {
       statusCode: 301,
@@ -169,7 +172,7 @@ function handler(event) {
     };
   }
 
-  // 2) Pretty URLs (/path → /path/index.html)
+  // 2) Pretty URLs (/path to /path/index.html)
   var u = req.uri;
   if (u.endsWith('/')) req.uri = u + 'index.html';
   else if (!u.includes('.')) req.uri = u + '/index.html';
@@ -178,14 +181,14 @@ function handler(event) {
 }
 ```
 
-Attach it to the **Default behavior → Viewer request**.
+Attach it to the **Default behavior / Viewer request** association.
 
 ---
 
 ## Local authoring flow
 - Create a post:
   ```bash
-  hugo new posts/my-new-post.md
+  hugo new posts/my-new-post/index.md
   ```
 - Draft locally:
   ```bash
@@ -194,18 +197,21 @@ Attach it to the **Default behavior → Viewer request**.
   ```
 - Publish: set `draft: false`, then:
   ```bash
-  git add -A && git commit -m "post: my-new-post" && git push
+  git add -A
+  git commit -m "post: my-new-post"
+  git push
   ```
 
-**Images:** place under `static/img/` and reference as `/img/…`.
+**Images:** place the preview image beside the post's `index.md` and reference it in front matter, for example `image: "hero.png"`.
 
 ---
 
 ## Troubleshooting and Resolutions
-- **Deprecated config**: `paginate` → `[pagination].pagerSize`
-- **Homepage as leaf**: rename `content/index.md` → `content/_index.md`
+- **Deprecated config**: `paginate` to `[pagination].pagerSize`
+- **Deprecated language config**: `languageCode` to `locale`
+- **Homepage as leaf**: rename `content/index.md` to `content/_index.md`
 - **403 in prod**: OAC/bucket policy mismatch or files not synced
-- **`www` NXDOMAIN**: add `CNAME www → apex` at Porkbun
+- **`www` NXDOMAIN**: add `CNAME www` to the apex at Porkbun
 - **“No cert found”**: ACM cert must be in `us-east-1` and cover the apex (wildcard alone doesn’t)
 
 ---
