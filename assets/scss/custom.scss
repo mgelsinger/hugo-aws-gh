@@ -11,3 +11,8 @@
   .article-list--compact { --image-size: 160px; }
 }
 
+/* Keep Severance's poster and title visible when the tall screenshot fills the cover. */
+.main-article .article-header .article-image img[src*="/posts/watch-it/progress"] {
+  object-position: center top;
+}
+

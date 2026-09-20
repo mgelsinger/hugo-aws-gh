@@ -5,8 +5,8 @@ draft: false
 slug: "watch-it"
 description: "Watch It is a self-hosted app for choosing movies and TV across your streaming subscriptions, saving a watchlist, and keeping track of your next episode."
 summary: "I wanted one place to answer two questions: what fits tonight, and where did I leave off? Watch It combines time-based suggestions, regional watch options, and manual episode tracking in a library you run yourself."
-image: "recommendation.png"
-images: ["recommendation.png"]
+image: "progress.png"
+images: ["progress.png"]
 tags: ["projects", "self-hosted", "movies", "tv", "docker", "typescript", "ai-assisted-development"]
 links:
   - title: "Download Watch It v1.0.0"
@@ -37,7 +37,11 @@ The main demonstration is a small, familiar request:
 
 In **Pick For Me**, choose **45 min**, **TV show** or **Either**, and **Light / comedy**. Open **Choose your streaming services**, select your subscriptions, and leave **Only show services I already use** checked. Your country in Settings determines which regional offers the app checks.
 
-The recommendation at the top of this post shows the result: a title, a synopsis, a listed runtime, and a **Why this fits** explanation. In that sample, Ted Lasso has a 33-minute first episode, a comedy classification, and a listed US Apple TV offer at the time of capture.
+The recommendation below shows the result: a title, a synopsis, a listed runtime, and a **Why this fits** explanation. In that sample, Ted Lasso has a 33-minute first episode, a comedy classification, and a listed US Apple TV offer at the time of capture.
+
+![A sample Ted Lasso recommendation showing its listed runtime, why it fits the selected filters, and regional watch options](recommendation.png)
+
+*The sample recommendation explains the match and offers actions to save the title or try another suggestion.*
 
 Those details matter more to me than an unexplained recommendation score. I can see what matched, decide whether the suggestion appeals, and shuffle if it does not. I can also preview the title without adding it, put it on my Watchlist, save it for later, or tell Watch It not to suggest it again.
 
@@ -53,11 +57,7 @@ Once a title looks interesting, it can stay in your library alongside shows you 
 
 *A populated sample library keeps saved movies and shows in progress together. Service badges reflect the captured regional data.*
 
-Episode tracking is manual. Mark an episode watched, and the title page keeps track of what is next. The example below has two episodes of Severance marked watched and points to the third.
-
-![A sample Severance title page showing two watched episodes, the next episode, and regional streaming options](progress.png)
-
-*The episode list and watch options share the title page. Opening a streaming service does not automatically mark anything watched.*
+Episode tracking is manual. Mark an episode watched, and the title page keeps track of what is next. The Severance screenshot at the top of this post has two episodes marked watched and points to the third. The episode list and watch options share the title page; opening a streaming service does not automatically mark anything watched.
 
 The layout also adapts to a smaller browser, which is useful when you want to check your place from the couch. Access from another device needs the documented home-network setup; a phone's `localhost` points to the phone itself.
 
@@ -65,13 +65,9 @@ The layout also adapts to a smaller browser, which is useful when you want to ch
 
 *A narrow-browser view of the sample library. The release checks include mobile-sized Chromium views, rather than certification on every phone or browser.*
 
-## Why make another watch app?
+## A library you run yourself
 
-[JustWatch](https://www.justwatch.com/) already helps people find streaming availability. [Trakt](https://trakt.tv/) and other watch-tracking apps already organize viewing history. Those are useful alternatives, particularly if you would rather use an established hosted service without installing anything.
-
-Watch It's appeal is the combination I wanted to use: a time-and-services suggestion, a decision about what to save, and visible episode progress in one self-hosted library. Your library stays in your installation, and you can export your lists, notes, ratings, preferences, and watched progress. Metadata requests still go to external providers.
-
-There is also a useful distinction from [Jellyfin](https://jellyfin.org/), which is a personal media server for organizing and playing video files. Watch It helps with discovery and tracking around streaming subscriptions. It does not replace a media server or a streaming subscription.
+Your library stays in your installation, and you can export your lists, notes, ratings, preferences, and watched progress. Metadata requests still go to external providers.
 
 For this release, I chose to focus on self-hosting. **Each installation has one shared library, including progress and settings.** An optional installation password protects access to that library; it does not create separate accounts or private libraries for different people.
 
