@@ -59,7 +59,7 @@ Once a title looks interesting, it can stay in your library alongside shows you 
 
 Episode tracking is manual. Mark an episode watched, and the title page keeps track of what is next. The Severance screenshot at the top of this post has two episodes marked watched and points to the third. The episode list and watch options share the title page; opening a streaming service does not automatically mark anything watched.
 
-The layout also adapts to a smaller browser, which is useful when you want to check your place from the couch. Access from another device needs the documented home-network setup; a phone's `localhost` points to the phone itself.
+The layout also adapts to a smaller browser, which is useful when you want to check your place from the couch.
 
 ![Watch It's sample library in a narrow mobile browser layout, with filters and two columns of title posters](mobile.png)
 
