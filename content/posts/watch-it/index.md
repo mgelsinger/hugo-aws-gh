@@ -1,7 +1,7 @@
 ---
 title: "Watch It: Find Your Next Watch and Keep Your Place"
 date: 2026-09-20T13:38:00-04:00
-draft: false
+draft: true
 slug: "watch-it"
 description: "Watch It is a self-hosted app for choosing movies and TV across your streaming subscriptions, saving a watchlist, and keeping track of your next episode."
 summary: "I wanted one place to answer two questions: what fits tonight, and where did I leave off? Watch It combines time-based suggestions, regional watch options, and manual episode tracking in a library you run yourself."

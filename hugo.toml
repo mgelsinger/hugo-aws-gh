@@ -22,7 +22,7 @@ locale = "en-US"
     [params.sidebar.avatar]
       enabled = true
       local = true
-      src = "img/avatar.jpg"
+      src = "img/ombreperano.png"
 
 [menu]
   [[menu.main]]
